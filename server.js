@@ -26,8 +26,6 @@ const personroutes = require('./routes/personroutes');
 app.use('/menu', menuroutes);
 app.use('/person', personroutes);
 
-
-
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
