@@ -1,7 +1,8 @@
 // Setting up Express for creating a Server
 const express = require('express');
 const app = express();
-const port = 3000;
+
+require('dotenv').config();
 
 // Importing the database connection
 const db = require('./db');
@@ -11,6 +12,8 @@ const db = require('./db');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 //.json() is used because we are sending JSON data from Postman
+
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('Hello World! Welcome to the Restaurant Management System');
@@ -26,6 +29,6 @@ const personroutes = require('./routes/personroutes');
 app.use('/menu', menuroutes);
 app.use('/person', personroutes);
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`);
 });
