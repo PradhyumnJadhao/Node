@@ -1,8 +1,8 @@
+require('dotenv').config();
+
 // Setting up Express for creating a Server
 const express = require('express');
 const app = express();
-
-require('dotenv').config();
 
 // Importing the database connection
 const db = require('./db');
@@ -32,3 +32,5 @@ app.use('/person', personroutes);
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
+
+//https://hotelnodeserver.onrender.com
