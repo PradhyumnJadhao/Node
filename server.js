@@ -3,9 +3,12 @@ require('dotenv').config();
 // Setting up Express for creating a Server
 const express = require('express');
 const app = express();
-
 // Importing the database connection
 const db = require('./db');
+// Importing passport for Authentication
+const passport = require('passport');
+// For username and password strategy
+const LocalStrategy = require('passport-local').Strategy;
 
 // Middleware to parse JSON requests
 // Converts any kind of i/p data in JS Object format and stores it in ' req.body'
@@ -15,6 +18,17 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 
+// Middleware Functions
+
+//1. Date and Time logging whenever hitting api
+const logRequest = (req, res, next) => {
+  console.log(`[${new Date().toLocaleString()}] Request made to : ${req.originalUrl}`);
+  next();
+}
+
+app.use(logRequest);
+
+// default home page
 app.get('/', (req, res) => {
   res.send('Hello World! Welcome to the Restaurant Management System');
 });
